@@ -26,7 +26,7 @@
 
   <!-- NAV -->
   <header style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 20px; padding: 16px clamp(16px, 5vw, 48px); background: oklch(98% 0.006 80 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid oklch(90% 0.01 60);">
-    <img src="./assets/logo-very-berry-group-transparent.svg" alt="Very Berry Group" style="height: 130px; width: auto;" />
+    <img src="./assets/logo-very-berry-group-transparent-v2.svg" alt="Very Berry Ltd" style="height: 100px; width: auto;" />
     <nav style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: flex-end;">
       <a href="#about" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">About</a>
       <a href="#brands" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">Our Brands</a>
@@ -56,23 +56,23 @@
   <section id="about" data-screen-label="About" style="padding: clamp(56px, 8vw, 80px) clamp(16px, 5vw, 48px); background: oklch(96% 0.015 40);">
     <div style="max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px;">
       <div>
-        <h2 style="font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; color: oklch(24% 0.02 30);">Who we are</h2>
+        <h2 style="font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; color: oklch(24% 0.02 30);">Who We Are</h2>
         <div style="width: 48px; height: 4px; border-radius: 2px; background: oklch(32% 0.09 150);"></div>
       </div>
       <div>
         <p style="font-size: 18px; line-height: 1.75; color: oklch(34% 0.02 30); margin: 0 0 32px;">Very Berry Group is a Tanzania-based collection of independent businesses spanning fresh produce, wholesale distribution, food manufacturing and hospitality. Each brand operates on its own, but all share the Group's commitment to quality, reliability and honest service — from farm to table.</p>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 8px; border-top: 1px solid oklch(88% 0.015 40);">
+        <div id="vb-stats-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 8px; border-top: 1px solid oklch(88% 0.015 40);">
           <div style="padding: 24px 16px 0 0; border-right: 1px solid oklch(88% 0.015 40);">
-            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">2021</div>
-            <div style="font-size: 13px; color: oklch(45% 0.02 30); margin-top: 4px;">Founded, from a 60sqm store</div>
+            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">{{ statYearDisplay }}</div>
+            <div style="font-size: 14.5px; color: oklch(45% 0.02 30); margin-top: 4px;">Founded, from a 60sqm store</div>
           </div>
           <div style="padding: 24px 16px; border-right: 1px solid oklch(88% 0.015 40);">
-            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">3</div>
-            <div style="font-size: 13px; color: oklch(45% 0.02 30); margin-top: 4px;">Retail branches, mainland & Zanzibar</div>
+            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">{{ statBranchesDisplay }}</div>
+            <div style="font-size: 14.5px; color: oklch(45% 0.02 30); margin-top: 4px;">Retail branches, mainland & Zanzibar</div>
           </div>
           <div style="padding: 24px 0 0 16px;">
-            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">50+</div>
-            <div style="font-size: 13px; color: oklch(45% 0.02 30); margin-top: 4px;">Employees across sales, factory & warehouse</div>
+            <div style="font-family: 'Sora', sans-serif; font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: oklch(24% 0.02 30);">{{ statTeamDisplay }}</div>
+            <div style="font-size: 14.5px; color: oklch(45% 0.02 30); margin-top: 4px;">Employees across sales, factory & warehouse</div>
           </div>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px;">
@@ -188,9 +188,29 @@
                       <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
                     </a>
                   </sc-if>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; padding-top: 12px; border-top: 1px solid oklch(95% 0.01 60);">
+                    <sc-if value="{{ loc.hasPhone }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ loc.phoneHref }}" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: oklch(42% 0.02 30); text-decoration: none;" style-hover="color: oklch(32% 0.09 150);">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: oklch(55% 0.02 30);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>{{ loc.phone }}</span>
+                      </a>
+                    </sc-if>
+                    <sc-if value="{{ loc.hasPhone2 }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ loc.phoneHref2 }}" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: oklch(42% 0.02 30); text-decoration: none;" style-hover="color: oklch(32% 0.09 150);">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: oklch(55% 0.02 30);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>{{ loc.phone2 }}</span>
+                      </a>
+                    </sc-if>
+                  </div>
                   <div style="margin-top: 2px; display: flex; flex-wrap: wrap; gap: 8px;">
                     <sc-if value="{{ loc.hasWhatsapp }}" hint-placeholder-val="{{ false }}">
                       <a href="{{ loc.whatsapp }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; border: 1px solid oklch(90% 0.01 60); background: white; font-size: 13px; font-weight: 600; color: oklch(30% 0.02 30);" style-hover="border-color: #25D366; background: oklch(97% 0.03 150);">
+                        <svg viewBox="0 0 32 32" width="15" height="15" fill="#25D366"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.31.646 4.47 1.768 6.31L4 29l7.86-1.727A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.818a9.77 9.77 0 0 1-4.986-1.363l-.357-.212-4.663 1.025 1.06-4.545-.234-.373A9.77 9.77 0 0 1 6.182 15c0-5.415 4.407-9.818 9.822-9.818S25.818 9.585 25.818 15 21.42 24.818 16.004 24.818zm5.37-7.35c-.294-.148-1.74-.86-2.01-.958-.27-.099-.467-.148-.664.148-.196.297-.76.958-.933 1.155-.172.198-.344.222-.638.074-.294-.148-1.24-.457-2.362-1.458-.873-.78-1.462-1.743-1.634-2.04-.172-.297-.018-.457.13-.605.133-.133.294-.346.442-.52.147-.173.196-.297.294-.495.098-.198.049-.371-.025-.52-.074-.148-.663-1.6-.909-2.192-.24-.577-.483-.499-.663-.508l-.564-.01c-.196 0-.515.074-.785.371-.27.297-1.03 1.008-1.03 2.46s1.055 2.853 1.202 3.05c.147.198 2.077 3.173 5.033 4.45.703.303 1.252.484 1.68.62.706.224 1.348.192 1.855.117.566-.084 1.74-.712 1.986-1.4.246-.688.246-1.278.172-1.4-.073-.123-.27-.198-.564-.346z"/></svg>
+                        <span>WhatsApp</span>
+                      </a>
+                    </sc-if>
+                    <sc-if value="{{ loc.hasWhatsapp2 }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ loc.whatsapp2 }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; border: 1px solid oklch(90% 0.01 60); background: white; font-size: 13px; font-weight: 600; color: oklch(30% 0.02 30);" style-hover="border-color: #25D366; background: oklch(97% 0.03 150);">
                         <svg viewBox="0 0 32 32" width="15" height="15" fill="#25D366"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.31.646 4.47 1.768 6.31L4 29l7.86-1.727A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.818a9.77 9.77 0 0 1-4.986-1.363l-.357-.212-4.663 1.025 1.06-4.545-.234-.373A9.77 9.77 0 0 1 6.182 15c0-5.415 4.407-9.818 9.822-9.818S25.818 9.585 25.818 15 21.42 24.818 16.004 24.818zm5.37-7.35c-.294-.148-1.74-.86-2.01-.958-.27-.099-.467-.148-.664.148-.196.297-.76.958-.933 1.155-.172.198-.344.222-.638.074-.294-.148-1.24-.457-2.362-1.458-.873-.78-1.462-1.743-1.634-2.04-.172-.297-.018-.457.13-.605.133-.133.294-.346.442-.52.147-.173.196-.297.294-.495.098-.198.049-.371-.025-.52-.074-.148-.663-1.6-.909-2.192-.24-.577-.483-.499-.663-.508l-.564-.01c-.196 0-.515.074-.785.371-.27.297-1.03 1.008-1.03 2.46s1.055 2.853 1.202 3.05c.147.198 2.077 3.173 5.033 4.45.703.303 1.252.484 1.68.62.706.224 1.348.192 1.855.117.566-.084 1.74-.712 1.986-1.4.246-.688.246-1.278.172-1.4-.073-.123-.27-.198-.564-.346z"/></svg>
                         <span>WhatsApp</span>
                       </a>
@@ -212,6 +232,21 @@
                 <button onClick="{{ brand.toggleExpand }}" style="background: none; border: none; padding: 0; font-size: 13px; font-weight: 600; color: oklch(32% 0.09 150); cursor: pointer; white-space: nowrap;" style-hover="text-decoration: underline;">{{ brand.retailToggleLabel }}</button>
               </div>
               <sc-if value="{{ brand.isExpanded }}" hint-placeholder-val="{{ false }}">
+                <sc-if value="{{ brand.hasApp }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 8px; background: oklch(97% 0.008 80); border-radius: 12px; padding: 14px 16px; margin-top: 10px;">
+                    <div style="font-size: 13px; color: oklch(38% 0.02 30); line-height: 1.5;">{{ brand.appNote }}</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                      <a href="{{ brand.playStoreUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; border: 1px solid oklch(90% 0.01 60); background: white; font-size: 13px; font-weight: 600; color: oklch(30% 0.02 30);" style-hover="border-color: #E6007E; background: oklch(96% 0.02 340);">
+                        <img src="./assets/logo-duka-direct.webp" alt="Duka Direct" style="width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;" />
+                        <span>Duka Direct (Android)</span>
+                      </a>
+                      <a href="{{ brand.appStoreUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; border: 1px solid oklch(90% 0.01 60); background: white; font-size: 13px; font-weight: 600; color: oklch(30% 0.02 30);" style-hover="border-color: #E6007E; background: oklch(96% 0.02 340);">
+                        <img src="./assets/logo-duka-direct.webp" alt="Duka Direct" style="width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;" />
+                        <span>Duka Direct (iOS)</span>
+                      </a>
+                    </div>
+                  </div>
+                </sc-if>
                 <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 10px; max-height: 320px; overflow-y: auto; padding-right: 4px;">
                   <sc-for list="{{ brand.retailGroups }}" as="group" hint-placeholder-count="3">
                     <div>
@@ -304,7 +339,7 @@
 
   <!-- FOOTER -->
   <footer style="padding: 32px clamp(16px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: oklch(15% 0.03 150);">
-    <img src="./assets/logo-very-berry-group-transparent.svg" alt="Very Berry Group" style="height: 110px; width: auto; filter: brightness(0) invert(1);" />
+    <img src="./assets/logo-very-berry-group-transparent-v2.svg" alt="Very Berry Ltd" style="height: 110px; width: auto; filter: brightness(0) invert(1);" />
     <div style="font-size: 13.5px; color: oklch(65% 0.01 60);">© 2026 Very Berry Group, Tanzania. All rights reserved.</div>
   </footer>
 
@@ -317,8 +352,45 @@ class Component extends DCLogic {
     form: { name: '', email: '', brand: 'General enquiry', message: '' },
     submitted: false,
     expandedBrands: {},
-    expandedAddress: {}
+    expandedAddress: {},
+    statsAnimated: false,
+    statYear: 2021,
+    statBranches: 0,
+    statTeam: 0
   };
+
+  componentDidMount() {
+    const el = document.getElementById('vb-stats-row');
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.state.statsAnimated) {
+          this.setState({ statsAnimated: true });
+          this.animateStats();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    obs.observe(el);
+  }
+
+  animateStats() {
+    const duration = 1200;
+    const start = performance.now();
+    const targets = { statYear: 2021, statBranches: 3, statTeam: 50 };
+    const froms = { statYear: 1990, statBranches: 0, statTeam: 0 };
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      this.setState({
+        statYear: Math.round(froms.statYear + (targets.statYear - froms.statYear) * eased),
+        statBranches: Math.round(froms.statBranches + (targets.statBranches - froms.statBranches) * eased),
+        statTeam: Math.round(froms.statTeam + (targets.statTeam - froms.statTeam) * eased)
+      });
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
 
   toggleBranches(name) {
     return () => this.setState(s => ({ expandedBrands: { ...s.expandedBrands, [name]: !s.expandedBrands[name] } }));
@@ -396,7 +468,7 @@ class Component extends DCLogic {
             branchLabel: 'Head Office',
             label: 'Plot 15/5, Hill Road, Oysterbay, Msasani, Dar es Salaam, Tanzania',
             hasMap: true, noMap: false, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Plot+15%2F5+Hill+Road+Oysterbay+Msasani+Dar+es+Salaam+Tanzania',
-            hasPhone: false, phone: null, phoneHref: null,
+            hasPhone: true, phone: '+255 795 471 471', phoneHref: 'tel:+255795471471',
             hasWhatsapp: true, whatsapp: 'https://wa.me/255795471471',
             hasInstagram: true, instagram: 'https://www.instagram.com/ringofreshtz', instagramLabel: 'Ringo Fresh on Instagram',
             hasHours: false, hours: null
@@ -405,7 +477,7 @@ class Component extends DCLogic {
             branchLabel: 'Kariakoo Sales Office',
             label: 'Tandamti / Livingstone Street, Kariakoo, Dar es Salaam, Tanzania',
             hasMap: true, noMap: false, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tandamti+Livingstone+Street+Kariakoo+Dar+es+Salaam+Tanzania',
-            hasPhone: false, phone: null, phoneHref: null,
+            hasPhone: true, phone: '+255 768 414 342', phoneHref: 'tel:+255768414342',
             hasWhatsapp: true, whatsapp: 'https://wa.me/255768414342',
             hasInstagram: true, instagram: 'https://www.instagram.com/ringofreshtz', instagramLabel: 'Ringo Fresh on Instagram',
             hasHours: false, hours: null
@@ -423,6 +495,10 @@ class Component extends DCLogic {
         addressSummary: 'Factory — Kigamboni, Dar es Salaam',
         hasWebsite: true, website: 'https://www.freshharvest.co.tz', websiteLabel: 'www.freshharvest.co.tz',
         retailSummary: 'Available at supermarkets & retailers across Tanzania',
+        hasApp: true,
+        appNote: 'Also available on the Duka Direct app — search for "Cilantro" to order Fresh Harvest products.',
+        appStoreUrl: 'https://apps.apple.com/gb/app/duka-direct/id1509485417',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.app.dukadirect&pcampaignid=web_share',
         retailGroups: [
           { region: 'Dar es Salaam — City Center', stores: ['Quick Corner Mart', 'Am to Pm Supermarket', '14 Star Supermarket', "Shrijee's Supermarket (Mtendeni)", 'Shamshu Pharmacy', 'Day to Day Mini Mart', 'Hajis Cash and Carry', 'Hollywood Pharmacy', 'Virjees', 'Milk Stop Shop', 'Maisha'] },
           { region: 'Dar es Salaam — Upanga', stores: ['Shrijees Supermarket (Girls Scout Building & Vijana Mall)', '14 Star Mindu Street', 'JNK Shop', 'Ashnas Convenience Store', 'Siyaan Grocery', 'Simba Supermarket (Swiss Tower)'] },
@@ -439,8 +515,11 @@ class Component extends DCLogic {
         branchSummary: '',
         locations: [{
           isMain: false, branchLabel: 'Our Facility', label: 'Plot 149, Tuamoyo, Kigamboni Main Road, Near Uwanja wa Mchava, Kigamboni, Dar es Salaam, Tanzania',
-          hasMap: true, noMap: false, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Plot+149+Tuamoyo+Kigamboni+Main+Road+Kigamboni+Dar+es+Salaam+Tanzania', hasPhone: false, phone: null,
-          hasWhatsapp: false, whatsapp: null,
+          hasMap: true, noMap: false, mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Plot+149+Tuamoyo+Kigamboni+Main+Road+Kigamboni+Dar+es+Salaam+Tanzania',
+          hasPhone: true, phone: '+255 785 592 480', phoneHref: 'tel:+255785592480',
+          hasPhone2: true, phone2: '+255 758 761 390', phoneHref2: 'tel:+255758761390',
+          hasWhatsapp: true, whatsapp: 'https://wa.me/255785592480',
+          hasWhatsapp2: true, whatsapp2: 'https://wa.me/255758761390',
           hasInstagram: true, instagram: 'https://www.instagram.com/freshharvesttz', instagramLabel: 'Fresh Harvest on Instagram',
           hasHours: false, hours: null
         }],
@@ -461,6 +540,9 @@ class Component extends DCLogic {
     }));
 
     return {
+      statYearDisplay: String(this.state.statYear),
+      statBranchesDisplay: String(this.state.statBranches),
+      statTeamDisplay: this.state.statTeam + '+',
       brands: brandsWithState,
       brandOptions: ['General enquiry', ...brands.map(b => b.name)],
       form: this.state.form,
