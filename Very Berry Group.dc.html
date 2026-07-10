@@ -309,16 +309,16 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px;">
               <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: oklch(34% 0.02 30);">
                 Name
-                <input type="text" required="true" value="{{ form.name }}" onChange="{{ setField('name') }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none;" />
+                <input type="text" required="true" value="{{ form.name }}" onChange="{{ onNameChange }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none;" />
               </label>
               <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: oklch(34% 0.02 30);">
                 Email
-                <input type="email" required="true" value="{{ form.email }}" onChange="{{ setField('email') }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none;" />
+                <input type="email" required="true" value="{{ form.email }}" onChange="{{ onEmailChange }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none;" />
               </label>
             </div>
             <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: oklch(34% 0.02 30);">
               Which brand is this about?
-              <select value="{{ form.brand }}" onChange="{{ setField('brand') }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none; background: white;">
+              <select value="{{ form.brand }}" onChange="{{ onBrandChange }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none; background: white;">
                 <sc-for list="{{ brandOptions }}" as="opt" hint-placeholder-count="6">
                   <option value="{{ opt }}">{{ opt }}</option>
                 </sc-for>
@@ -326,7 +326,7 @@
             </label>
             <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: oklch(34% 0.02 30);">
               Message
-              <textarea required="true" rows="4" value="{{ form.message }}" onChange="{{ setField('message') }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none; resize: vertical; font-family: inherit;"></textarea>
+              <textarea required="true" rows="4" value="{{ form.message }}" onChange="{{ onMessageChange }}" style="padding: 12px 14px; border-radius: 10px; border: 1px solid oklch(88% 0.01 60); font-size: 15px; outline: none; resize: vertical; font-family: inherit;"></textarea>
             </label>
             <button type="submit" style="margin-top: 4px; padding: 14px; border-radius: 10px; border: none; background: oklch(32% 0.09 150); color: white; font-weight: 700; font-size: 15px; cursor: pointer;" style-hover="background: oklch(26% 0.1 150);">Send message</button>
           </form>
@@ -398,12 +398,14 @@ class Component extends DCLogic {
     return () => this.setState(s => ({ expandedAddress: { ...s.expandedAddress, [name]: !s.expandedAddress[name] } }));
   }
 
-  setField(key) {
-    return (e) => {
-      const val = e && e.target ? e.target.value : e;
-      this.setState(s => ({ form: { ...s.form, [key]: val } }));
-    };
+  setField(key, val) {
+    this.setState(s => ({ form: { ...s.form, [key]: val } }));
   }
+
+  onNameChange(e) { this.setField('name', e.target.value); }
+  onEmailChange(e) { this.setField('email', e.target.value); }
+  onBrandChange(e) { this.setField('brand', e.target.value); }
+  onMessageChange(e) { this.setField('message', e.target.value); }
 
   handleSubmit(e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -559,7 +561,10 @@ class Component extends DCLogic {
       brandOptions: ['General enquiry', ...brands.map(b => b.name)],
       form: this.state.form,
       submitted: this.state.submitted,
-      setField: (key) => this.setField(key),
+      onNameChange: (e) => this.onNameChange(e),
+      onEmailChange: (e) => this.onEmailChange(e),
+      onBrandChange: (e) => this.onBrandChange(e),
+      onMessageChange: (e) => this.onMessageChange(e),
       handleSubmit: (e) => this.handleSubmit(e)
     };
   }
