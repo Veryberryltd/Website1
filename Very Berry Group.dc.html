@@ -22,12 +22,24 @@
 <script src="./support.js"></script>
 </head>
 <body>
+<template id="__bundler_thumbnail" data-bg-color="#0a5742">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a5742"/>
+    <circle cx="600" cy="400" r="160" fill="none" stroke="#ffffff" stroke-width="10" opacity="0.9"/>
+    <text x="600" y="430" font-family="sans-serif" font-size="48" font-weight="700" fill="#ffffff" text-anchor="middle">VB</text>
+  </svg>
+</template>
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="./image-slot.js"></script>
+  <meta name="ext-resource-dependency" content="./assets/logo-cilantro.png">
+  <meta name="ext-resource-dependency" content="./assets/logo-ringo-fresh.png">
+  <meta name="ext-resource-dependency" content="./assets/logo-fresh-harvest.png">
+  <meta name="ext-resource-dependency" content="./assets/logo-duka-direct.webp">
+  <meta name="ext-resource-dependency" content="./assets/certifications/tbs-storage-permit.pdf">
   <style>
     body { margin: 0; background: oklch(98.5% 0.012 85); color: oklch(22% 0.02 30); font-family: 'Karla', sans-serif; }
     a { color: oklch(32% 0.09 150); text-decoration: none; }
@@ -46,6 +58,7 @@
     <nav style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: flex-end;">
       <a href="#about" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">About</a>
       <a href="#brands" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">Our Brands</a>
+      <a href="#certifications" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">Certifications</a>
       <a href="#contact" style="font-size: 15px; font-weight: 500; color: oklch(30% 0.02 30);">Contact</a>
       <a href="#contact" style="padding: 10px 20px; border-radius: 999px; background: oklch(32% 0.09 150); color: white; font-weight: 600; font-size: 14px; white-space: nowrap;" style-hover="background: oklch(26% 0.1 150);">Get in Touch</a>
     </nav>
@@ -266,6 +279,39 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" data-screen-label="Certifications" style="padding: clamp(56px, 9vw, 96px) clamp(16px, 5vw, 48px); max-width: 1160px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <h2 style="font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 12px; color: oklch(24% 0.02 30);">Certifications</h2>
+      <p style="font-size: 17px; color: oklch(42% 0.02 30); margin: 0;">Registered and certified with the Tanzania Bureau of Standards.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <sc-for list="{{ certifications }}" as="cert" hint-placeholder-count="1">
+        <div style="background: white; border-radius: 20px; border: 1px solid oklch(91% 0.01 60); padding: 32px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 3px oklch(20% 0 0 / 0.04);">
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: oklch(93% 0.04 150); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="oklch(30% 0.1 150)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family: 'Sora', sans-serif; font-size: 19px; font-weight: 700; margin: 0 0 4px; color: oklch(24% 0.02 30);">{{ cert.title }}</h3>
+              <div style="font-size: 13px; font-weight: 600; color: oklch(32% 0.09 150); text-transform: uppercase; letter-spacing: 0.03em;">{{ cert.permitNo }}</div>
+            </div>
+          </div>
+          <p style="font-size: 15px; line-height: 1.6; color: oklch(40% 0.02 30); margin: 0;">{{ cert.description }}</p>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 12px; background: oklch(97% 0.008 80); font-size: 13.5px; color: oklch(38% 0.02 30);">
+            <div><strong>Premises:</strong> {{ cert.premises }}</div>
+            <div><strong>Valid:</strong> {{ cert.validFrom }} – {{ cert.validTo }}</div>
+          </div>
+          <a href="{{ cert.file }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; padding: 12px 20px; border-radius: 999px; background: oklch(32% 0.09 150); color: white; font-weight: 600; font-size: 14.5px;" style-hover="background: oklch(26% 0.1 150);">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            <span>View certificate (PDF)</span>
+          </a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" data-screen-label="Contact" style="padding: clamp(56px, 9vw, 96px) clamp(16px, 5vw, 48px); background: #0A5742;">
     <div style="max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px;">
@@ -294,7 +340,7 @@
             </div>
           </div>
         </div>
-        <div style="margin-top: auto; padding-top: 40px; border-top: 1px solid oklch(30% 0.04 150); font-size: 13.5px; color: oklch(92% 0.015 150);">Prefer to reach a specific brand directly? Select it in the form and we'll pass your message along.</div>
+        <div style="margin-top: auto; padding-top: 40px; font-size: 13.5px; color: oklch(92% 0.015 150);">Prefer to reach a specific brand directly? Select it in the form and we'll pass your message along.</div>
       </div>
 
       <div style="background: white; border-radius: 20px; padding: clamp(24px, 4vw, 36px); align-self: start;">
@@ -541,6 +587,18 @@ class Component extends DCLogic {
       },
     ];
 
+    const certifications = [
+      {
+        title: 'TBS Premises Registration Permit',
+        permitNo: 'Permit No. TBS/EZ/F/PREM/2025/1663',
+        description: 'Tanzania Bureau of Standards registration authorizing Very Berry Ltd to operate as a food premises under the Storage business category.',
+        premises: 'Plot No. 15, Block 26, Yasser Arafat, Msasani, Kinondoni, Dar es Salaam',
+        validFrom: '14 March 2026',
+        validTo: '13 March 2027',
+        file: './assets/certifications/tbs-storage-permit.pdf'
+      }
+    ];
+
     const brandsWithState = brands.map(b => ({
       ...b,
       singleLocation: !b.multiLocation,
@@ -558,6 +616,7 @@ class Component extends DCLogic {
       statBranchesDisplay: String(this.state.statBranches),
       statTeamDisplay: this.state.statTeam + '+',
       brands: brandsWithState,
+      certifications,
       brandOptions: ['General enquiry', ...brands.map(b => b.name)],
       form: this.state.form,
       submitted: this.state.submitted,
